@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const stuffRoutes = require('./routes/stuff');
 const userROutes = require('./routes/user');
+const path = require('path');
 
 //Ajoute de la base de données avec mongoose
 mongoose.connect('mongodb+srv://ndohvich:171191Yannickndohjules@cluster0.zxie4.mongodb.net/?retryWrites=true&w=majority',
@@ -12,6 +13,9 @@ mongoose.connect('mongodb+srv://ndohvich:171191Yannickndohjules@cluster0.zxie4.m
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 const app = express();
+
+//gestion des images 
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 //me sert de controler les fichiers en tete
 app.use((req, res, next) => {
